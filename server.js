@@ -332,12 +332,17 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const requestIp = require("request-ip");
+const geoip = require("geoip-lite");
+
+
 
 const app = express();
 const PORT = 3000;
 
 // Static Files
 app.use(express.static("public"));
+app.use(requestIp.mw());
 
 
 // ==========================================
@@ -361,21 +366,24 @@ function saveVisitor(page, req) {
 
     const now = new Date();
 
-    const visitor = {
+    // const now = new Date();
 
-        page,
+const geo = geoip.lookup(req.clientIp);
 
-        // Machine Friendly
-        time: now.toISOString(),
+// New visitor object
+const visitor = {
+    page: page,
 
-        // Human Friendly
-        displayTime: now.toLocaleString(),
+    time: now.toISOString(),
+    displayTime: now.toLocaleString(),
 
-        ip: req.ip,
+    ip: req.clientIp,
 
-        browser: req.headers["user-agent"]
+    country: geo ? geo.country : "Unknown",
+    city: geo ? geo.city : "Unknown",
 
-    };
+    browser: req.headers["user-agent"]
+};
 
     // Duplicate Request Protection
     const lastVisitor = visitors[visitors.length - 1];
