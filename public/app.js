@@ -102,6 +102,15 @@ async function loadVisitors() {
 
         document.getElementById("linkedinVisitors").innerText = linkedinVisitors.length;
 
+        // Resume Downloads
+
+const resumeVisitors = visitors.filter(
+    visitor => visitor.page === "Resume"
+);
+
+document.getElementById("resumeVisitors").innerText =
+resumeVisitors.length;
+
         // Today's Visitors
         const today = new Date();
 

@@ -425,6 +425,16 @@ app.get("/github", (req, res) => {
 
 });
 
+// ==========================================
+// Home Page
+// ==========================================
+
+app.get("/", (req, res) => {
+
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+
+});
+
 
 // ==========================================
 // Admin Dashboard
@@ -435,6 +445,31 @@ app.get("/admin", (req, res) => {
 
 });
 
+// ==========================================
+// LinkedIn Tracking
+// ==========================================
+app.get("/linkedin", (req, res) => {
+
+    saveVisitor("LinkedIn", req);
+
+    res.redirect("https://www.linkedin.com/in/kuldeep-vaniya-12166b247");
+
+});
+
+
+// ==========================================
+// Resume Tracking
+// ==========================================
+
+app.get("/resume", (req, res) => {
+
+    saveVisitor("Resume", req);
+
+    const resumePath = path.join(__dirname, "resume", "resume.pdf");
+
+    res.download(resumePath);
+
+});
 
 // ==========================================
 // Visitor API
