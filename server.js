@@ -1,545 +1,226 @@
-// // // // const express = require("express");
-
-// // // // const app = express();
-
-// // // // const PORT = 3000;
-
-// // // // // GitHub Tracking Route
-// // // // app.get("/github", (req, res) => {
-
-// // // //     console.log("==================================");
-// // // //     console.log("New Visitor");
-// // // //     console.log("Time:", new Date());
-// // // //     console.log("IP:", req.ip);
-// // // //     console.log("Browser:", req.headers["user-agent"]);
-// // // //     console.log("==================================");
-
-// // // //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // // // });
-
-// // // // app.listen(PORT, () => {
-// // // //     console.log(`Server Running on http://localhost:${PORT}`);
-// // // // });
-
-
-// // // // A NEW STEP FOR GITHUB TRACKING PROJECT WHERE WE START TO SAVE VISITERS DATA IN JSON FILE
-
-
-// // // const express = require("express");
-// // // const fs = require("fs");
-
-// // // const app = express();
-// // // const PORT = 3000;
-// // // const path = require("path");
-
-
-// // // // Visitor ko file me save karne ka function
-// // // function saveVisitor(page, req) {
-
-// // //     // visitors.json read karo
-// // //     let visitors = [];
-
-// // //     try {
-// // //         const data = fs.readFileSync("visitors.json", "utf8");
-// // //         visitors = JSON.parse(data);
-// // //     } catch (err) {
-// // //         visitors = [];
-// // //     }
-
-// // //     // New visitor object
-// // //     const visitor = {
-// // //         page: page,
-// // //         time: new Date().toLocaleString(),
-// // //         ip: req.ip,
-// // //         browser: req.headers["user-agent"]
-// // //     };
-
-// // //     // Array me add karo
-// // //     visitors.push(visitor);
-
-// // //     // Dobara file me save karo
-// // //     fs.writeFileSync(
-// // //         "visitors.json",
-// // //         JSON.stringify(visitors, null, 2)
-// // //     );
-
-// // //     console.log("New Visitor Saved");
-// // // }
-
-// // // // GitHub Tracking
-// // // app.get("/github", (req, res) => {
-
-// // //     saveVisitor("GitHub", req);
-
-// // //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // // });
-
-// // // app.get("/admin", (req, res) => {
-
-// // //     res.sendFile(path.join(__dirname, "public", "admin.html"));
-
-// // // });
-
-// // // app.get("/api/visitors", (req, res) => {
-
-// // //     const data = fs.readFileSync("visitors.json");
-
-// // //     const visitors = JSON.parse(data);
-
-// // //     res.json(visitors);
-
-// // // });
-
-// // // app.listen(PORT, () => {
-
-// // //     console.log(`Server Running`);
-// // // });
-
-// // // const express = require("express");
-
-// // // const app = express();
-
-// // // const PORT = 3000;
-
-// // // // GitHub Tracking Route
-// // // app.get("/github", (req, res) => {
-
-// // //     console.log("==================================");
-// // //     console.log("New Visitor");
-// // //     console.log("Time:", new Date());
-// // //     console.log("IP:", req.ip);
-// // //     console.log("Browser:", req.headers["user-agent"]);
-// // //     console.log("==================================");
-
-// // //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // // });
-
-// // // app.listen(PORT, () => {
-// // //     console.log(`Server Running on http://localhost:3000`);
-// // // });
-
-
-// // // A NEW STEP FOR GITHUB TRACKING PROJECT WHERE WE START TO SAVE VISITERS DATA IN JSON FILE
-
-// // const express = require("express");
-// // const fs = require("fs");
-// // const path = require("path");
-
-// // const app = express();
-// // const PORT = 3000;
-
-// // // ✅ Public folder ki static files (CSS, JS, Images) serve karega
-// // app.use(express.static("public"));
-
-
-// // // Visitor ko file me save karne ka function
-// // function saveVisitor(page, req) {
-
-// //     // visitors.json read karo
-// //     let visitors = [];
-
-// //     try {
-// //         const data = fs.readFileSync("visitors.json", "utf8");
-// //         visitors = JSON.parse(data);
-// //     } catch (err) {
-// //         visitors = [];
-// //     }
-
-// //     // New visitor object
-// //     const visitor = {
-// //         page: page,
-// //         time: new Date().toLocaleString(),
-// //         ip: req.ip,
-// //         browser: req.headers["user-agent"]
-// //     };
-
-// //     // Array me add karo
-// //     visitors.push(visitor);
-
-// //     // Dobara file me save karo
-// //     fs.writeFileSync(
-// //         "visitors.json",
-// //         JSON.stringify(visitors, null, 2)
-// //     );
-
-// //     console.log("==================================");
-// //     console.log("New Visitor Saved");
-// //     console.log(visitor);
-// //     console.log("==================================");
-// // }
-
-
-// // // ======================
-// // // GitHub Tracking Route
-// // // ======================
-// // app.get("/github", (req, res) => {
-
-// //     saveVisitor("GitHub", req);
-
-// //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // });
-
-
-// // // ======================
-// // // Admin Dashboard
-// // // ======================
-// // app.get("/admin", (req, res) => {
-
-// //     res.sendFile(path.join(__dirname, "public", "admin.html"));
-
-// // });
-
-
-// // // ======================
-// // // Visitor API
-// // // ======================
-// // app.get("/api/visitors", (req, res) => {
-
-// //     try {
-
-// //         const data = fs.readFileSync("visitors.json", "utf8");
-// //         const visitors = JSON.parse(data);
-
-// //         res.json(visitors);
-
-// //     } catch (err) {
-
-// //         res.json([]);
-
-// //     }
-
-// // });
-
-
-// // // ======================
-// // // Start Server
-// // // ======================
-// // app.listen(PORT, () => {
-
-// //     console.log(`🚀 Server Running at http://localhost:${PORT}`);
-
-// // });
-
-
-// // // const express = require("express");
-
-// // // const app = express();
-
-// // // const PORT = 3000;
-
-// // // // GitHub Tracking Route
-// // // app.get("/github", (req, res) => {
-
-// // //     console.log("==================================");
-// // //     console.log("New Visitor");
-// // //     console.log("Time:", new Date());
-// // //     console.log("IP:", req.ip);
-// // //     console.log("Browser:", req.headers["user-agent"]);
-// // //     console.log("==================================");
-
-// // //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // // });
-
-// // // app.listen(PORT, () => {
-// // //     console.log(`Server Running on http://localhost:${PORT}`);
-// // });
-
-
-// // // A NEW STEP FOR GITHUB TRACKING PROJECT WHERE WE START TO SAVE VISITERS DATA IN JSON FILE
-
-
-// // const express = require("express");
-// // const fs = require("fs");
-
-// // const app = express();
-// // const PORT = 3000;
-// // const path = require("path");
-
-
-// // // Visitor ko file me save karne ka function
-// // function saveVisitor(page, req) {
-
-// //     // visitors.json read karo
-// //     let visitors = [];
-
-// //     try {
-// //         const data = fs.readFileSync("visitors.json", "utf8");
-// //         visitors = JSON.parse(data);
-// //     } catch (err) {
-// //         visitors = [];
-// //     }
-
-// //     // New visitor object
-// //     const visitor = {
-// //         page: page,
-// //         time: new Date().toLocaleString(),
-// //         ip: req.ip,
-// //         browser: req.headers["user-agent"]
-// //     };
-
-// //     // Array me add karo
-// //     visitors.push(visitor);
-
-// //     // Dobara file me save karo
-// //     fs.writeFileSync(
-// //         "visitors.json",
-// //         JSON.stringify(visitors, null, 2)
-// //     );
-
-// //     console.log("New Visitor Saved");
-// // }
-
-// // // GitHub Tracking
-// // app.get("/github", (req, res) => {
-
-// //     saveVisitor("GitHub", req);
-
-// //     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// // });
-
-// // app.get("/admin", (req, res) => {
-
-// //     res.sendFile(path.join(__dirname, "public", "admin.html"));
-
-// // });
-
-// // app.get("/api/visitors", (req, res) => {
-
-// //     const data = fs.readFileSync("visitors.json");
-
-// //     const visitors = JSON.parse(data);
-
-// //     res.json(visitors);
-
-// // });
-
-// // app.listen(PORT, () => {
-
-// //     console.log(`Server Running`);
-// // });
-
-
-// // =============================
-// // CURRENT WORKING VERSION
-// // =============================
-
-// const express = require("express");
-// const fs = require("fs");
-// const path = require("path");
-// const requestIp = require("request-ip");
-// const geoip = require("geoip-lite");
-
-
-
-// const app = express();
-// const PORT = 3000;
-
-// // Static Files
-// app.use(express.static("public"));
-// app.use(requestIp.mw());
-
-
-// // ==========================================
-// // Visitor Save Function
-// // ==========================================
-// function saveVisitor(page, req) {
-
-//     let visitors = [];
-
-//     try {
-
-//         visitors = JSON.parse(
-//             fs.readFileSync("visitors.json", "utf8")
-//         );
-
-//     } catch (err) {
-
-//         visitors = [];
-
-//     }
-
-//     const now = new Date();
-
-//     // const now = new Date();
-
-// const geo = geoip.lookup(req.clientIp);
-
-// // New visitor object
-// const visitor = {
-//     page: page,
-
-//     time: now.toISOString(),
-//     displayTime: now.toLocaleString(),
-
-//     ip: req.clientIp,
-
-//     country: geo ? geo.country : "Unknown",
-//     city: geo ? geo.city : "Unknown",
-
-//     browser: req.headers["user-agent"]
-// };
-
-//     // Duplicate Request Protection
-//     const lastVisitor = visitors[visitors.length - 1];
-
-//     if (
-
-//         lastVisitor &&
-//         lastVisitor.page === visitor.page &&
-//         lastVisitor.ip === visitor.ip &&
-//         lastVisitor.browser === visitor.browser &&
-//         (new Date(visitor.time) - new Date(lastVisitor.time)) < 3000
-
-//     ) {
-
-//         console.log("⚠ Duplicate Visitor Ignored");
-
-//         return;
-
-//     }
-
-//     visitors.push(visitor);
-
-//     fs.writeFileSync(
-
-//         "visitors.json",
-
-//         JSON.stringify(visitors, null, 2)
-
-//     );
-
-//     console.log("====================================");
-//     console.log("✅ New Visitor Saved");
-//     console.log(visitor);
-//     console.log("====================================");
-
-// }
-
-
-// // ==========================================
-// // GitHub Tracking
-// // ==========================================
-// app.get("/github", (req, res) => {
-
-//     saveVisitor("GitHub", req);
-
-//     res.redirect("https://github.com/kuldeep-vaniya-2711");
-
-// });
-
-// // ==========================================
-// // Home Page
-// // ==========================================
-
-// app.get("/", (req, res) => {
-
-//     res.sendFile(path.join(__dirname, "public", "index.html"));
-
-// });
-
-
-// // ==========================================
-// // Admin Dashboard
-// // ==========================================
-// app.get("/admin", (req, res) => {
-
-//     res.sendFile(path.join(__dirname, "public", "admin.html"));
-
-// });
-
-// // ==========================================
-// // LinkedIn Tracking
-// // ==========================================
-// app.get("/linkedin", (req, res) => {
-
-//     saveVisitor("LinkedIn", req);
-
-//     res.redirect("https://www.linkedin.com/in/kuldeep-vaniya-12166b247");
-
-// });
-
-
-// // ==========================================
-// // Resume Tracking
-// // ==========================================
-
-// app.get("/resume", (req, res) => {
-
-//     saveVisitor("Resume", req);
-
-//     const resumePath = path.join(__dirname, "resume", "resume.pdf");
-
-//     res.download(resumePath);
-
-// });
-
-// // ==========================================
-// // Visitor API
-// // ==========================================
-// app.get("/api/visitors", (req, res) => {
-
-//     try {
-
-//         const visitors = JSON.parse(
-
-//             fs.readFileSync("visitors.json", "utf8")
-
-//         );
-
-//         res.json(visitors);
-
-//     } catch (err) {
-
-//         res.json([]);
-
-//     }
-
-// });
-
-
-// // ==========================================
-// // Start Server
-// // ==========================================
-// app.listen(PORT, () => {
-
-//     console.log(`🚀 Server Running at http://localhost:${PORT}`);
-
-// });
+require("dotenv").config();
 
 
 
 const express = require("express");
-
 const path = require("path");
-
+const session = require("express-session");
 const app = express();
+const auth = require("./middleware/auth");
 
-const PORT = 3000;
+console.log("SESSION_SECRET =", process.env.SESSION_SECRET);
 
+app.use(session({
+
+    secret: process.env.SESSION_SECRET,
+
+    resave: false,
+
+    saveUninitialized: false,
+
+    cookie: {
+
+        maxAge: 1000 * 60 * 60
+
+    }
+
+}));
+
+// console.log(process.env.SESSION_SECRET);
+
+const PORT = process.env.PORT || 3000;
+
+// Static Files
+app.use(express.json());
 app.use(express.static("public"));
 
+// Home
 app.get("/", (req, res) => {
-
     res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Routes
+app.use("/github", require("./routes/github"));
+app.use("/linkedin", require("./routes/linkedin"));
+app.use("/resume", require("./routes/resume"));
+app.use("/login", require("./routes/login"));
+app.use("/logout", require("./routes/logout"));
+app.use("/admin", auth, require("./routes/admin"));
+
+/* ==========================================================
+   Analytics API
+========================================================== */
+
+app.get("/api/analytics", auth, (req, res) => {
+
+    const visitors = require("./utils/saveVisitor").getVisitors();
+
+    const totalVisitors = visitors.length;
+
+    const github = visitors.filter(v => v.page === "GitHub").length;
+
+    const linkedin = visitors.filter(v => v.page === "LinkedIn").length;
+
+    const resume = visitors.filter(v => v.page === "Resume").length;
+
+
+    const today = new Date().toISOString().split("T")[0];
+
+const todayVisitors = visitors.filter(v =>
+    v.time.startsWith(today)
+).length;
+
+
+//     const today = new Date().toISOString().split("T")[0];
+
+// const todayVisitors = visitors.filter(v =>
+//     v.time.startsWith(today)
+// ).length;
+
+    // const todayVisitors = visitors.filter(v =>
+    //     new Date(v.time).toLocaleDateString() === today
+    // ).length;
+
+    /* ==========================================
+       Hourly Visitor Trend
+    ========================================== */
+
+    const hourlyMap = {};
+
+    visitors.forEach(visitor => {
+
+        const hour = new Date(visitor.time).getHours();
+
+        hourlyMap[hour] = (hourlyMap[hour] || 0) + 1;
+
+    });
+
+    const hourlyLabels = [];
+    const hourlyCounts = [];
+
+    for (let i = 0; i < 24; i++) {
+
+        hourlyLabels.push(i + ":00");
+        hourlyCounts.push(hourlyMap[i] || 0);
+
+    }
+
+    /* ==========================================
+       Browser Analytics
+    ========================================== */
+
+    const browserMap = {};
+
+    visitors.forEach(v => {
+
+        browserMap[v.browser] = (browserMap[v.browser] || 0) + 1;
+
+    });
+
+    const browserLabels = Object.keys(browserMap);
+
+    const browserCounts = Object.values(browserMap);
+
+    /* ==========================================
+       Device Analytics
+    ========================================== */
+
+    const deviceMap = {};
+
+    visitors.forEach(v => {
+
+        const device = v.device || "Desktop";
+
+        deviceMap[device] = (deviceMap[device] || 0) + 1;
+
+    });
+
+    const deviceLabels = Object.keys(deviceMap);
+
+    const deviceCounts = Object.values(deviceMap);
+
+    /* ==========================================
+       Country Analytics
+    ========================================== */
+
+    const countryMap = {};
+
+    visitors.forEach(v => {
+
+        const country = v.country || "Unknown";
+
+        countryMap[country] = (countryMap[country] || 0) + 1;
+
+    });
+
+    const countryLabels = Object.keys(countryMap);
+
+    const countryCounts = Object.values(countryMap);
+
+    /* ==========================================
+       Response
+    ========================================== */
+
+    res.json({
+
+        totalVisitors,
+
+        github,
+
+        linkedin,
+
+        resume,
+
+        todayVisitors,
+
+        visitors,
+
+        hourlyLabels,
+
+        hourlyCounts,
+
+        browserLabels,
+
+        browserCounts,
+
+        deviceLabels,
+
+        deviceCounts,
+
+        countryLabels,
+
+        countryCounts
+
+    });
 
 });
 
-app.use("/github", require("./routes/github"));
+app.get("/export/csv", (req, res) => {
 
-app.use("/linkedin", require("./routes/linkedin"));
+    const visitors = require("./utils/saveVisitor").getVisitors();
 
-app.use("/resume", require("./routes/resume"));
+    let csv =
+`Page,Time,Country,City,Browser,OS,Device,IP\n`;
 
-app.use("/admin", require("./routes/admin"));
+    visitors.forEach(v => {
+
+        csv += `${v.page},${v.displayTime},${v.country},${v.city},${v.browser},${v.os},${v.device},${v.ip}\n`;
+
+    });
+
+    res.header("Content-Type", "text/csv");
+    res.attachment("visitors.csv");
+    res.send(csv);
+
+});
+
+/* ========================================================== */
 
 app.listen(PORT, () => {
 
-    console.log(`🚀 Server Running at http://localhost:${PORT}`);
+    console.log("====================================");
+    console.log("🚀 Server Running");
+    console.log(`🌐 http://localhost:${PORT}`);
+    console.log("====================================");
 
 });

@@ -1,4 +1,9 @@
+const sendTelegram = require("./sendTelegram");
+
 const fs = require("fs");
+const geoip = require("geoip-lite");
+const UAParser = require("ua-parser-js");
+
 
 function saveVisitor(page, req) {
 
@@ -15,26 +20,52 @@ function saveVisitor(page, req) {
 
     }
 
+
+    const now = new Date();
+
+    const geo = geoip.lookup(req.ip);
+
+
+    const parser = new UAParser(req.headers["user-agent"]);
+    const result = parser.getResult();
+
+
     const visitor = {
 
         page,
 
-        time: new Date().toISOString(),
+        time: now.toISOString(),
 
-        displayTime: new Date().toLocaleString(),
+        displayTime: now.toLocaleString(),
 
         ip: req.ip,
 
-        browser: req.headers["user-agent"]
+        country: geo ? geo.country : "Unknown",
+
+        city: geo ? geo.city : "Unknown",
+
+        browser: result.browser.name || "Unknown",
+
+        browserVersion: result.browser.version || "Unknown",
+
+        os: result.os.name || "Unknown",
+
+        device: result.device.type || "Desktop"
 
     };
 
+
     visitors.push(visitor);
+
 
     fs.writeFileSync(
         "visitors.json",
         JSON.stringify(visitors, null, 2)
     );
+
+
+    sendTelegram(visitor);
+
 
     console.log("==================================");
     console.log("New Visitor Saved");
@@ -42,5 +73,24 @@ function saveVisitor(page, req) {
     console.log("==================================");
 
 }
+
+
+// Analytics ke liye
+saveVisitor.getVisitors = function(){
+
+    try {
+
+        const data = fs.readFileSync("visitors.json", "utf8");
+
+        return JSON.parse(data);
+
+    } catch {
+
+        return [];
+
+    }
+
+};
+
 
 module.exports = saveVisitor;
